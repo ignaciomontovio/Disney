@@ -24,11 +24,11 @@ public class UserService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Usuario us = repo.findByNombre(username); 
+		Usuario us = repo.findByUsername(username); 
 		
 		List<GrantedAuthority> roles = new ArrayList<>();
 		roles.add(new SimpleGrantedAuthority("ADMIN"));
-		UserDetails userDet = new User(us.getNombre(), us.getClave(), roles);
+		UserDetails userDet = new User(us.getUsername(), us.getPassword(), roles);
 		return userDet;
 	}
 

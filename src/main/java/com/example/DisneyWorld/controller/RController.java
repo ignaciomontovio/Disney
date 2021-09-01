@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-
+import static com.example.DisneyWorld.Constants.REGISTER_URL;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @RestController
@@ -58,67 +58,20 @@ public class RController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
-//	private String getJWTToken(String username) {
-//		String secretKey = "123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef";
-////		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-////				.commaSeparatedStringToAuthorityList("ROLE_USER");
-//		
-//		String token = Jwts
-//				.builder()
-//				.setId("softtekJWT")
-//				.setSubject(username)
-////				.claim("authorities",
-////						grantedAuthorities.stream()
-////								.map(GrantedAuthority::getAuthority)
-////								.collect(Collectors.toList()))
-//				.setIssuedAt(new Date(System.currentTimeMillis()))
-//				.setExpiration(new Date(System.currentTimeMillis() + 600000))
-//				.signWith(SignatureAlgorithm.HS512,
-//						secretKey.getBytes()).compact();
-//
-//		return "Bearer " + token;
-//	}
-	
+
 	//-------------------------------------------------------------- 
 	//Personaje
 	//-------------------------------------------------------------- 
-	
-//	@GetMapping( value = "auth/logins.html")
-//	public String LoginUser(@RequestBody Usuario user) {
-//		String token = getJWTToken("adsa");
-//		return token;
-//		//return "";
-//	}
+
 	
 	@PostMapping( value = "auth/register")
 	public String RegisterUser(@RequestBody Usuario user) {
 		user.setPassword(bcrypt.encode(user.getPassword()));
-		user.setClave(bcrypt.encode(user.getClave()));
 		usuarioService.save(user);
 		return user.toString();
 		
 	}
 	
-//	private String getJWTToken(String username) {
-//		String secretKey = "mySecretKey";
-//		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-//				.commaSeparatedStringToAuthorityList("ROLE_USER");
-//		
-//		String token = Jwts
-//				.builder()
-//				.setId("softtekJWT")
-//				.setSubject(username)
-//				.claim("authorities",
-//						grantedAuthorities.stream()
-//								.map(GrantedAuthority::getAuthority)
-//								.collect(Collectors.toList()))
-//				.setIssuedAt(new Date(System.currentTimeMillis()))
-//				.setExpiration(new Date(System.currentTimeMillis() + 600000))
-//				.signWith(SignatureAlgorithm.HS512,
-//						secretKey.getBytes()).compact();
-//
-//		return "Bearer " + token;
-//	}
 //	@GetMapping( value = "/auth/register.html")
 //	//@RequestMapping("/auth/register.html")
 //	public void loadRegisterUser(HttpServletResponse response) {
@@ -133,13 +86,7 @@ public class RController {
 //		}
 //		//return "redirect:localhost:8080/auth/register.html";
 //	}
-//	
-//	@PostMapping( value = "/registerUser")
-//	public String saveRegisterUser(Model model) {
-//		Usuario newUser = (Usuario) model.getAttribute("user");
-//		usuarioService.save(newUser);
-//		return "ok";
-//	}
+
 	//-------------------------------------------------------------- 
 	//END Usuario
 	//-------------------------------------------------------------- 
@@ -157,18 +104,6 @@ public class RController {
 		List<Personaje> personajes = personajeService.findAll();
 		return personajes;
 	}
-	
-	/*@GetMapping( value= "/login.html")
-	public String InterfazlOgearuSuario(Model model) {
-		System.out.println("ok");
-		return "redirect:/login.html";
-	}
-	
-	@PostMapping( value= "/loginUser")
-	public String logearUsuario() {
-		System.out.println("ok");
-		return null;
-	}*/
 	
 	//-------------------------------------------------------------- 
 	//END Personaje

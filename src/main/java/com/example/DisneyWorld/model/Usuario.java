@@ -14,8 +14,6 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String nombre;
-	private String clave;
 	private String username;
 	private String password;
 	public int getId() {
@@ -24,19 +22,6 @@ public class Usuario {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getClave() {
-		return clave;
-	}
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
-	
 	public String getUsername() {
 		return username;
 	}
@@ -51,7 +36,7 @@ public class Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", clave=" + clave + "]";
+		return "Usuario [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 	
 }

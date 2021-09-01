@@ -6,5 +6,5 @@ import com.example.DisneyWorld.model.Usuario;
 
 public interface IUsuarioRepo extends JpaRepository<Usuario,Integer> {
 
-		Usuario findByNombre(String nombre);
+		Usuario findByUsername(String username);
 }
