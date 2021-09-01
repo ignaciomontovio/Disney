@@ -1,12 +1,16 @@
 package com.example.DisneyWorld;
 
+import static com.example.DisneyWorld.Constants.LOGIN_URL;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.server.ui.LoginPageGeneratingWebFilter;
 
@@ -36,17 +40,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
+//		http
+//		.authorizeRequests()
+//			.antMatchers("/auth/login","/auth/logins.html","/auth/registers.html","/css/*.css","./js/*.js").permitAll()
+//			//,"/auth/register"
+//			.anyRequest().authenticated()
+//			.and()
+//		.formLogin()
+//			.loginPage("/auth/login.html")
+//			.permitAll()
+//			.and()
+//		.logout()
+//			.permitAll();
+//		
+//		http.csrf().disable(); // VER CON QUE REEMPLAZAR ESTO
+		
+		/*
+		 * 1. Se desactiva el uso de cookies
+		 * 2. Se activa la configuración CORS con los valores por defecto
+		 * 3. Se desactiva el filtro CSRF
+		 * 4. Se indica que el login no requiere autenticación
+		 * 5. Se indica que el resto de URLs esten securizadas
+		 */
 		http
-		.authorizeRequests()
-			.antMatchers("/auth/register.html","/css/*.css","./js/*.js").permitAll()
-			.anyRequest().authenticated()
-			.and()
-		.formLogin()
-			.loginPage("/auth/login.html")
-			.permitAll()
-			.and()
-		.logout()
-			.permitAll();
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+			.cors().and()
+			.csrf().disable()
+			.authorizeRequests().antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
+			.anyRequest().authenticated().and()
+				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
+				.addFilter(new JWTAuthorizationFilter(authenticationManager()));
+		
 		//http
 			//.authorizeRequests()
 			//.anyRequest()
@@ -66,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //                .authorizationEndpoint(authorizationEndpoint ->
 //                    authorizationEndpoint
 //                 .baseUri("/login/oauth2/authorization");
-		http.csrf().disable(); // VER CON QUE REEMPLAZAR ESTO
+		
 		
 		
 	}
