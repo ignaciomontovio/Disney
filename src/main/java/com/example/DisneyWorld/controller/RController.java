@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,41 +56,44 @@ public class RController {
 	@Autowired
 	private ISerieRepo serieService;
 	
-	private String getJWTToken(String username) {
-		String secretKey = "123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef";
-//		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-//				.commaSeparatedStringToAuthorityList("ROLE_USER");
-		
-		String token = Jwts
-				.builder()
-				.setId("softtekJWT")
-				.setSubject(username)
-//				.claim("authorities",
-//						grantedAuthorities.stream()
-//								.map(GrantedAuthority::getAuthority)
-//								.collect(Collectors.toList()))
-				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 600000))
-				.signWith(SignatureAlgorithm.HS512,
-						secretKey.getBytes()).compact();
-
-		return "Bearer " + token;
-	}
+	@Autowired
+	private BCryptPasswordEncoder bcrypt;
+//	private String getJWTToken(String username) {
+//		String secretKey = "123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef123456789ABCdef";
+////		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+////				.commaSeparatedStringToAuthorityList("ROLE_USER");
+//		
+//		String token = Jwts
+//				.builder()
+//				.setId("softtekJWT")
+//				.setSubject(username)
+////				.claim("authorities",
+////						grantedAuthorities.stream()
+////								.map(GrantedAuthority::getAuthority)
+////								.collect(Collectors.toList()))
+//				.setIssuedAt(new Date(System.currentTimeMillis()))
+//				.setExpiration(new Date(System.currentTimeMillis() + 600000))
+//				.signWith(SignatureAlgorithm.HS512,
+//						secretKey.getBytes()).compact();
+//
+//		return "Bearer " + token;
+//	}
 	
 	//-------------------------------------------------------------- 
 	//Personaje
 	//-------------------------------------------------------------- 
 	
-	@GetMapping( value = "auth/logins.html")
-	public String LoginUser(@RequestBody Usuario user) {
-		String token = getJWTToken("adsa");
-		return token;
-		//return "";
-	}
+//	@GetMapping( value = "auth/logins.html")
+//	public String LoginUser(@RequestBody Usuario user) {
+//		String token = getJWTToken("adsa");
+//		return token;
+//		//return "";
+//	}
 	
-	@GetMapping( value = "auth/register")
-	public String RegisterUser(Usuario user) {
-		
+	@PostMapping( value = "auth/register")
+	public String RegisterUser(@RequestBody Usuario user) {
+		user.setPassword(bcrypt.encode(user.getPassword()));
+		user.setClave(bcrypt.encode(user.getClave()));
 		usuarioService.save(user);
 		return user.toString();
 		
