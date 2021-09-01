@@ -13,6 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.server.ui.LoginPageGeneratingWebFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 import com.example.DisneyWorld.service.UserService;
 
@@ -94,5 +97,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		
 	}
-	
+
+//	@Bean
+//	CorsConfigurationSource corsConfigurationSource() {
+//		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+//		return (CorsConfigurationSource) source;
+//	}
 }
