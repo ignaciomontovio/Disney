@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.example.DisneyWorld.model.Usuario;
-import com.example.DisneyWorld.repo.IUsuarioRepo;
+import com.DisneyWorld.model.Usuario;
+import com.DisneyWorld.repo.IUsuarioRepo;
 
 @SpringBootTest
 class DisneyWorldApplicationTests {
