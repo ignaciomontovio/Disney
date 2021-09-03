@@ -1,6 +1,9 @@
 package com.DisneyWorld.dto;
 
 import java.util.Date;
+import java.util.List;
+
+import com.DisneyWorld.model.Pelicula;
 
 public class PeliculaDto {
 	
@@ -33,6 +36,12 @@ public class PeliculaDto {
 	public void setCalificacion(int calificacion) {
 		this.calificacion = calificacion;
 	}
+	@Override
+	public String toString() {
+		return "PeliculaDto [titulo=" + titulo + ", imagen=" + imagen + ", fechaCreacion=" + fechaCreacion
+				+ ", calificacion=" + calificacion + "]";
+	}
+	
 	
 	
 }

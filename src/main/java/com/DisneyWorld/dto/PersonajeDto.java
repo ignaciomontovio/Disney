@@ -1,5 +1,9 @@
 package com.DisneyWorld.dto;
 
+import java.util.List;
+
+import com.DisneyWorld.model.Pelicula;
+
 public class PersonajeDto {
 
 	private String nombre;
@@ -7,7 +11,7 @@ public class PersonajeDto {
 	private int edad;
 	private float peso;
 	private String historia;
-	
+	//private List<PeliculaDto> peliculasDto;
 	public String getNombre() {
 		return nombre;
 	}
@@ -38,12 +42,6 @@ public class PersonajeDto {
 	public void setHistoria(String historia) {
 		this.historia = historia;
 	}
-	@Override
-	public String toString() {
-		return "PersonajeDto [nombre=" + nombre + ", imagen=" + imagen + ", edad=" + edad + ", peso=" + peso
-				+ ", historia=" + historia + "]";
-	}
-	
 	
 	
 }

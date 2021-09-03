@@ -88,5 +88,8 @@ public class Personaje {
 				+ ", historia=" + historia + ", series=" + series + ", peliculas=" + peliculas + "]";
 	}
 	
+	public String toStringImagenNombre() {
+		return "{nombre=" + nombre + ", imagen=" + imagen+"}";
+	}
 	
 }

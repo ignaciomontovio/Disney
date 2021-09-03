@@ -1,6 +1,9 @@
 package com.DisneyWorld;
 
 import static com.DisneyWorld.Constants.LOGIN_URL;
+import static com.DisneyWorld.Constants.REGISTER_URL;
+import static com.DisneyWorld.Constants.INDEX_URL;
+import static com.DisneyWorld.Constants.CSS_URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -39,12 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		throws Exception{
 		auth.userDetailsService(userDetailsService).passwordEncoder(bcrypt);
 	}
-//	@Bean 
-//	public JWTAuthenticationFilter getJWTAuthenticationFilter() throws Exception { 
-//	    final JWTAuthenticationFilter filter = new JWTAuthenticationFilter(authenticationManager()); 
-//	    filter.setFilterProcessesUrl("/auth/login"); 
-//	    return filter; 
-//	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
@@ -63,7 +60,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
-				.antMatchers(HttpMethod.POST,"/auth/**").permitAll()
+				.antMatchers(HttpMethod.POST,REGISTER_URL).permitAll()
+				.antMatchers(HttpMethod.GET,INDEX_URL).permitAll()
+				.antMatchers(HttpMethod.GET,CSS_URL).permitAll()
+				.antMatchers(HttpMethod.GET,"/").permitAll()
+				.antMatchers(HttpMethod.GET,"/assets/**").permitAll()
 			.anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()) )
 				.addFilter(new JWTAuthorizationFilter(authenticationManager()));

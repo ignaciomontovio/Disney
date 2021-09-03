@@ -22,8 +22,8 @@ public class PeliculaService implements IPeliculaService{
 	private IGeneroRepo generoRepo;
 	
 	public List<Pelicula> findAll(){
-		
-		return null;
+		List<Pelicula> peliculas = peliculaRepo.findAll();
+		return peliculas;
 	}
 
 	@Override

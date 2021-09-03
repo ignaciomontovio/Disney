@@ -42,7 +42,9 @@ public class PersonajeController {
 	
 	@PostMapping(value = "/crearPersonaje")
 	public ResponseEntity<?> crearPersonaje(@RequestBody PersonajeDto personajeDto){
+		System.out.println(personajeDto);
 		Personaje personaje = personajeService.savePersonaje(personajeDto);
+		
 		return new ResponseEntity<>(personaje,HttpStatus.ACCEPTED);
 	}
 	
