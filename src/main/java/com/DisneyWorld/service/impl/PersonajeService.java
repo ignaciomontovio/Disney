@@ -33,12 +33,25 @@ public class PersonajeService implements IPersonajeService{
 
 	@Override
 	public Personaje updatePersonaje(Integer id, PersonajeDto personajeDto) {
+		
 		Personaje personaje = personajeRepo.getById(id);
-		personaje.setEdad(personajeDto.getEdad());
-		personaje.setHistoria(personajeDto.getHistoria());
-		personaje.setImagen(personajeDto.getImagen());
-		personaje.setNombre(personajeDto.getNombre());
-		personaje.setPeso(personajeDto.getPeso());
+		
+		int edad = personajeDto.getEdad();
+		float peso = personajeDto.getPeso();
+		
+		String historia = personajeDto.getHistoria(),
+				imagen = personajeDto.getImagen(),
+				nombre = personajeDto.getNombre();
+		if(edad != 0)
+			personaje.setEdad(edad);
+		if(historia != null )
+			personaje.setHistoria(historia);
+		if(imagen != null)
+			personaje.setImagen(imagen);
+		if(nombre != null)
+			personaje.setNombre(nombre);
+		if(peso != 0)
+			personaje.setPeso(peso);
 		personajeRepo.save(personaje);
 		return personaje;
 	}

@@ -3,6 +3,7 @@ package com.DisneyWorld.controller;
 import static com.DisneyWorld.Constants.REGISTER_URL;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.DisneyWorld.dto.PersonajeDto;
+import com.DisneyWorld.dto.PersonajeDtoRes;
 import com.DisneyWorld.model.Pelicula;
 import com.DisneyWorld.model.Personaje;
 import com.DisneyWorld.model.Usuario;
@@ -72,11 +74,11 @@ public class RController {
 	@GetMapping(value ="/characters")
 	public ResponseEntity<?> obtenerPersonajes(){
 		List<Personaje> personajes = personajeService.findAll();
-		String personajesResponse="";
+		List<PersonajeDtoRes> personajesDtoRes = new ArrayList<PersonajeDtoRes>();
 		for (Personaje personaje : personajes) {
-			personajesResponse="{"+personaje.getImagen()+","+personaje.getNombre()+"}"+personajesResponse;
+			personajesDtoRes.add(new PersonajeBuilder().withPersonajeDtoRes(personaje).buildRes());
 		}
-		return new ResponseEntity<>(personajesResponse,HttpStatus.OK);
+		return new ResponseEntity<>(personajesDtoRes,HttpStatus.OK);
 	}
 
 }
