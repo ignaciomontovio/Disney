@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.DisneyWorld.model.Genero;
 import com.DisneyWorld.repo.IGeneroRepo;
 
-@Repository
+
 public class GeneroRepoImpl implements IGeneroRepo{
 
 	@Override

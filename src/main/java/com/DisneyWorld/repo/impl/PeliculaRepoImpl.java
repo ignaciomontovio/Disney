@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.DisneyWorld.model.Pelicula;
 import com.DisneyWorld.repo.IPeliculaRepo;
 
-@Repository
+
 public class PeliculaRepoImpl implements IPeliculaRepo{
 
 	@Override

@@ -8,5 +8,5 @@ import com.DisneyWorld.model.Pelicula;
 public interface IPeliculaService {
 	public List<Pelicula> findAll();
 	
-	public Pelicula save(PeliculaDto peliculaDto);
+	public Pelicula savePelicula(PeliculaDto peliculaDto);
 }

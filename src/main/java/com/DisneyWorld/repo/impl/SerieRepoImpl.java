@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.DisneyWorld.model.Serie;
 import com.DisneyWorld.repo.ISerieRepo;
 
-@Repository
+
 public class SerieRepoImpl implements ISerieRepo{
 
 	@Override

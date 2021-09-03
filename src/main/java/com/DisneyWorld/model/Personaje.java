@@ -17,6 +17,7 @@ public class Personaje {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String nombre;
 	private String imagen;
 	private int edad;
@@ -30,6 +31,11 @@ public class Personaje {
 	List<Pelicula> peliculas;
 	
 	
+	public Personaje() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Personaje(String nombre, String imagen, int edad, float peso, String historia) {
 		super();
 		this.nombre = nombre;
@@ -75,10 +81,12 @@ public class Personaje {
 	public void setHistoria(String historia) {
 		this.historia = historia;
 	}
+
 	@Override
 	public String toString() {
 		return "Personaje [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", edad=" + edad + ", peso=" + peso
-				+ ", series=" + series + ", peliculas=" + peliculas + ", historia=" + historia + "]";
+				+ ", historia=" + historia + ", series=" + series + ", peliculas=" + peliculas + "]";
 	}
+	
 	
 }

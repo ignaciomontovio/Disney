@@ -1,4 +1,4 @@
-package com.example.DisneyWorld;
+package com.DisneyWorld;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +14,9 @@ class DisneyWorldApplicationTests {
 	@Autowired
 	private IUsuarioRepo repo;
 	
-	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
-	@Test
-	void contextLoads() {
-		
-	}
+
 	@Test
 	public void crearUsuarioTest() {
 		Usuario us = new Usuario();

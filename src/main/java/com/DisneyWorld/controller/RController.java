@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +31,7 @@ import com.DisneyWorld.repo.ISerieRepo;
 import com.DisneyWorld.repo.IUsuarioRepo;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
-
+@Configuration
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @RestController
 public class RController {

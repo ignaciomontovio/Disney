@@ -26,6 +26,11 @@ public class Genero {
 	private List<Serie> series;
 
 	
+	public Genero() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Genero(String nombre, String imagen) {
 		super();
 		this.nombre = nombre;

@@ -28,6 +28,10 @@ public class Serie {
 	List<Genero> generos;
 	
 	
+	public Serie() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Serie(String imagen, String titulo, Date fechaCreacion, int calificacion) {
 		super();
 		this.imagen = imagen;

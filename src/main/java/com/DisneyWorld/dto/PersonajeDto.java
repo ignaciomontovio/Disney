@@ -38,6 +38,11 @@ public class PersonajeDto {
 	public void setHistoria(String historia) {
 		this.historia = historia;
 	}
+	@Override
+	public String toString() {
+		return "PersonajeDto [nombre=" + nombre + ", imagen=" + imagen + ", edad=" + edad + ", peso=" + peso
+				+ ", historia=" + historia + "]";
+	}
 	
 	
 	

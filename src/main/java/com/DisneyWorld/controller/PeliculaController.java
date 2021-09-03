@@ -28,7 +28,7 @@ public class PeliculaController {
 	
 	@PostMapping(value = "/crearPelicula")
 	public Pelicula crearPelicula(@RequestBody PeliculaDto peliculaDto) {
-		Pelicula pelicula = peliculaService.save(peliculaDto);
+		Pelicula pelicula = peliculaService.savePelicula(peliculaDto);
 		return pelicula;
 	}
 	

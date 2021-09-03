@@ -12,14 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.DisneyWorld.model.Personaje;
 import com.DisneyWorld.repo.IPersonajeRepo;
 
-@Repository
-public class PersonajeRepoImpl implements IPersonajeRepo{
 
-	@Override
-	public List<Personaje> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class PersonajeRepoImpl implements IPersonajeRepo{
 
 	@Override
 	public List<Personaje> findAll(Sort sort) {
@@ -82,12 +76,6 @@ public class PersonajeRepoImpl implements IPersonajeRepo{
 	}
 
 	@Override
-	public Personaje getById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public <S extends Personaje> List<S> findAll(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
@@ -101,12 +89,6 @@ public class PersonajeRepoImpl implements IPersonajeRepo{
 
 	@Override
 	public Page<Personaje> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends Personaje> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -127,12 +109,6 @@ public class PersonajeRepoImpl implements IPersonajeRepo{
 	public long count() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -182,5 +158,31 @@ public class PersonajeRepoImpl implements IPersonajeRepo{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public List<Personaje> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Personaje getById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Personaje save(Personaje personaje) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

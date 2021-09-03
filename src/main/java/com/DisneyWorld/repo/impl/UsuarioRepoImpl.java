@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.DisneyWorld.model.Usuario;
 import com.DisneyWorld.repo.IUsuarioRepo;
 
-@Repository
+
 public class UsuarioRepoImpl implements IUsuarioRepo{
 
 	@Override
