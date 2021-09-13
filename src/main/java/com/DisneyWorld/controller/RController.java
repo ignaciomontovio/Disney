@@ -26,14 +26,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.DisneyWorld.dto.PersonajeDto;
 import com.DisneyWorld.dto.PersonajeDtoRes;
-import com.DisneyWorld.model.Pelicula;
+import com.DisneyWorld.model.PeliculaSerie;
 import com.DisneyWorld.model.Personaje;
 import com.DisneyWorld.model.Usuario;
 import com.DisneyWorld.model.builder.PersonajeBuilder;
 import com.DisneyWorld.repo.IGeneroRepo;
-import com.DisneyWorld.repo.IPeliculaRepo;
+import com.DisneyWorld.repo.IPeliculaSerieRepo;
 import com.DisneyWorld.repo.IPersonajeRepo;
-import com.DisneyWorld.repo.ISerieRepo;
 import com.DisneyWorld.repo.IUsuarioRepo;
 import com.DisneyWorld.service.IPersonajeService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -50,20 +49,18 @@ public class RController {
 	private IGeneroRepo generoService;
 
 	@Autowired
-	private ISerieRepo serieService;
-	
-	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
 	@Autowired
 	private IPersonajeService personajeService;
 	
 	@PostMapping( value = REGISTER_URL)
-	public String RegisterUser(@RequestBody Usuario user) {
+	public ResponseEntity<?> RegisterUser(@RequestBody Usuario user) {
+		
 		user.setPassword(bcrypt.encode(user.getPassword()));
 		usuarioService.save(user);
-		return user.toString();
-		
+		//return user.toString();
+		return new ResponseEntity<>(user.toString(),HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/")
@@ -71,14 +68,6 @@ public class RController {
 		 response.sendRedirect("/index.html");
 	}
 	
-	@GetMapping(value ="/characters")
-	public ResponseEntity<?> obtenerPersonajes(){
-		List<Personaje> personajes = personajeService.findAll();
-		List<PersonajeDtoRes> personajesDtoRes = new ArrayList<PersonajeDtoRes>();
-		for (Personaje personaje : personajes) {
-			personajesDtoRes.add(new PersonajeBuilder().withPersonajeDtoRes(personaje).buildRes());
-		}
-		return new ResponseEntity<>(personajesDtoRes,HttpStatus.OK);
-	}
+	
 
 }

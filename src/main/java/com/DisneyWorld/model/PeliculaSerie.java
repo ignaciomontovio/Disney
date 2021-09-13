@@ -9,8 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
-public class Pelicula {
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
+public class PeliculaSerie {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,19 +29,31 @@ public class Pelicula {
 	private Date fechaCreacion;
 	private int calificacion;
 	
+	//@JsonBackReference
 	@ManyToMany
 	List<Personaje> personajes;
 	
+	//@JsonBackReference
 	@ManyToMany
 	List<Genero> generos;
 	
 	
-	public Pelicula() {
+	public PeliculaSerie() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Pelicula(String titulo, String imagen, Date fechaCreacion, int calificacion) {
+	public PeliculaSerie(int id) {
+		super();
+		this.id = id;
+	}
+
+	public PeliculaSerie(String titulo) {
+		super();
+		this.titulo = titulo;
+	}
+
+	public PeliculaSerie(String titulo, String imagen, Date fechaCreacion, int calificacion) {
 		super();
 		this.titulo = titulo;
 		this.imagen = imagen;

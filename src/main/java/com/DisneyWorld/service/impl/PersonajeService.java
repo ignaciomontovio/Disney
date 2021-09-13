@@ -1,13 +1,17 @@
 package com.DisneyWorld.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.DisneyWorld.dto.PersonajeDto;
+import com.DisneyWorld.dto.PersonajeDtoRes;
+import com.DisneyWorld.model.PeliculaSerie;
 import com.DisneyWorld.model.Personaje;
 import com.DisneyWorld.model.builder.PersonajeBuilder;
+import com.DisneyWorld.repo.IPeliculaSerieRepo;
 import com.DisneyWorld.repo.IPersonajeRepo;
 import com.DisneyWorld.service.IPersonajeService;
 
@@ -17,8 +21,11 @@ public class PersonajeService implements IPersonajeService{
 	@Autowired
 	private IPersonajeRepo personajeRepo;
 
+	@Autowired
+	private IPeliculaSerieRepo peliculaRepo;
+
 	@Override
-	public List<Personaje> findAll() {
+	public List<Personaje> findAllPersonaje() {
 		
 		List<Personaje> personajes = personajeRepo.findAll();
 		return personajes;
@@ -27,6 +34,16 @@ public class PersonajeService implements IPersonajeService{
 	@Override
 	public Personaje savePersonaje(PersonajeDto personajeDto) {
 		Personaje personaje = new PersonajeBuilder().withPersonajeDto(personajeDto).build();
+		
+		if(personaje.getPeliculas() != null)
+			for (PeliculaSerie pelicula : personaje.getPeliculas()) {
+				PeliculaSerie peliculaExist = peliculaRepo.findByTitulo(pelicula.getTitulo());
+				if(peliculaExist == null) {
+					return null;
+				}
+				pelicula.setId(peliculaExist.getId());
+			}
+
 		personajeRepo.save(personaje);
 		return personaje;
 	}
@@ -61,5 +78,16 @@ public class PersonajeService implements IPersonajeService{
 		Personaje personaje = personajeRepo.getById(id);
 		personajeRepo.deleteById(id);
 		return personaje;
+	}
+
+	@Override
+	public List<PersonajeDtoRes> findAllPersonajeDtoRes() {
+		List<Personaje> personajes = personajeRepo.findAll();
+		List<PersonajeDtoRes> personajesDtoRes = new ArrayList<PersonajeDtoRes>();
+		if(personajes != null)
+			for (Personaje personaje : personajes) {
+				personajesDtoRes.add(new PersonajeBuilder().withPersonajeDtoRes(personaje).buildRes());
+			}
+		return personajesDtoRes;
 	}
 }

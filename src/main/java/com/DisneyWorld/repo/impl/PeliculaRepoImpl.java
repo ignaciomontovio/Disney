@@ -9,32 +9,32 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.DisneyWorld.model.Pelicula;
-import com.DisneyWorld.repo.IPeliculaRepo;
+import com.DisneyWorld.model.PeliculaSerie;
+import com.DisneyWorld.repo.IPeliculaSerieRepo;
 
 
-public class PeliculaRepoImpl implements IPeliculaRepo{
+public class PeliculaRepoImpl implements IPeliculaSerieRepo{
 
 	@Override
-	public List<Pelicula> findAll() {
+	public List<PeliculaSerie> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Pelicula> findAll(Sort sort) {
+	public List<PeliculaSerie> findAll(Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Pelicula> findAllById(Iterable<Integer> ids) {
+	public List<PeliculaSerie> findAllById(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Pelicula> List<S> saveAll(Iterable<S> entities) {
+	public <S extends PeliculaSerie> List<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,19 +46,19 @@ public class PeliculaRepoImpl implements IPeliculaRepo{
 	}
 
 	@Override
-	public <S extends Pelicula> S saveAndFlush(S entity) {
+	public <S extends PeliculaSerie> S saveAndFlush(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Pelicula> List<S> saveAllAndFlush(Iterable<S> entities) {
+	public <S extends PeliculaSerie> List<S> saveAllAndFlush(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteAllInBatch(Iterable<Pelicula> entities) {
+	public void deleteAllInBatch(Iterable<PeliculaSerie> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -76,43 +76,43 @@ public class PeliculaRepoImpl implements IPeliculaRepo{
 	}
 
 	@Override
-	public Pelicula getOne(Integer id) {
+	public PeliculaSerie getOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Pelicula getById(Integer id) {
+	public PeliculaSerie getById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Pelicula> List<S> findAll(Example<S> example) {
+	public <S extends PeliculaSerie> List<S> findAll(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Pelicula> List<S> findAll(Example<S> example, Sort sort) {
+	public <S extends PeliculaSerie> List<S> findAll(Example<S> example, Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<Pelicula> findAll(Pageable pageable) {
+	public Page<PeliculaSerie> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Pelicula> S save(S entity) {
+	public <S extends PeliculaSerie> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Optional<Pelicula> findById(Integer id) {
+	public Optional<PeliculaSerie> findById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -136,7 +136,7 @@ public class PeliculaRepoImpl implements IPeliculaRepo{
 	}
 
 	@Override
-	public void delete(Pelicula entity) {
+	public void delete(PeliculaSerie entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -148,7 +148,7 @@ public class PeliculaRepoImpl implements IPeliculaRepo{
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Pelicula> entities) {
+	public void deleteAll(Iterable<? extends PeliculaSerie> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -160,27 +160,33 @@ public class PeliculaRepoImpl implements IPeliculaRepo{
 	}
 
 	@Override
-	public <S extends Pelicula> Optional<S> findOne(Example<S> example) {
+	public <S extends PeliculaSerie> Optional<S> findOne(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Pelicula> Page<S> findAll(Example<S> example, Pageable pageable) {
+	public <S extends PeliculaSerie> Page<S> findAll(Example<S> example, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Pelicula> long count(Example<S> example) {
+	public <S extends PeliculaSerie> long count(Example<S> example) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public <S extends Pelicula> boolean exists(Example<S> example) {
+	public <S extends PeliculaSerie> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public PeliculaSerie findByTitulo(String titulo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

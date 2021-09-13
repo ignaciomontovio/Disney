@@ -8,10 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 public class Personaje {
 
 	@Id
@@ -24,16 +31,25 @@ public class Personaje {
 	private float peso;
 	private String historia;
 	
+	//@JsonBackReference
+	 //@JsonManagedReference
 	@ManyToMany
-	List<Serie> series;
+	List<PeliculaSerie> peliculas;
 	
-	@ManyToMany
-	List<Pelicula> peliculas;
-	
-	
+
 	public Personaje() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Personaje(int id) {
+		super();
+		this.id = id;
+	}
+
+	public Personaje(String nombre) {
+		super();
+		this.nombre = nombre;
 	}
 
 	public Personaje(String nombre, String imagen, int edad, float peso, String historia) {
@@ -44,6 +60,19 @@ public class Personaje {
 		this.peso = peso;
 		this.historia = historia;
 	}
+	
+
+	public Personaje(String nombre, String imagen, int edad, float peso, String historia,
+			List<PeliculaSerie> peliculas) {
+		super();
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.edad = edad;
+		this.peso = peso;
+		this.historia = historia;
+		this.peliculas = peliculas;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -82,10 +111,13 @@ public class Personaje {
 		this.historia = historia;
 	}
 
-	@Override
-	public String toString() {
-		return "Personaje [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", edad=" + edad + ", peso=" + peso
-				+ ", historia=" + historia + ", series=" + series + ", peliculas=" + peliculas + "]";
+
+	public List<PeliculaSerie> getPeliculas() {
+		return peliculas;
+	}
+
+	public void setPeliculas(List<PeliculaSerie> peliculas) {
+		this.peliculas = peliculas;
 	}
 	
 	public String toStringImagenNombre() {

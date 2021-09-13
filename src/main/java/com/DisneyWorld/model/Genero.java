@@ -1,5 +1,6 @@
 package com.DisneyWorld.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,7 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@CrossOrigin("*")
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 public class Genero {
 
 	@Id
@@ -19,12 +31,10 @@ public class Genero {
 	
 	private String imagen;
 	
-	@ManyToMany
-	private List<Pelicula> peliculas;
 	
 	@ManyToMany
-	private List<Serie> series;
-
+	private List<PeliculaSerie> peliculas ;
+	
 	
 	public Genero() {
 		super();
@@ -35,6 +45,27 @@ public class Genero {
 		super();
 		this.nombre = nombre;
 		this.imagen = imagen;
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Genero(int id) {
+		super();
+		this.id = id;
+	}
+
+	public Genero(String nombre, String imagen, List<PeliculaSerie> peliculas) {
+		super();
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.peliculas = peliculas;
 	}
 
 	public String getNombre() {
@@ -53,21 +84,13 @@ public class Genero {
 		this.imagen = imagen;
 	}
 
-	public List<Pelicula> getPeliculas() {
+	public List<PeliculaSerie> getPeliculas() {
 		return peliculas;
 	}
 
-	public void setPeliculas(List<Pelicula> peliculas) {
+	public void setPeliculas(List<PeliculaSerie> peliculas) {
 		this.peliculas = peliculas;
 	}
 
-	public List<Serie> getSeries() {
-		return series;
-	}
-
-	public void setSeries(List<Serie> series) {
-		this.series = series;
-	}
-	
 	
 }

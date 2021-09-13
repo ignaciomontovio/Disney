@@ -3,14 +3,22 @@ package com.DisneyWorld.dto;
 import java.util.Date;
 import java.util.List;
 
-import com.DisneyWorld.model.Pelicula;
+import com.DisneyWorld.model.Genero;
+import com.DisneyWorld.model.PeliculaSerie;
+import com.DisneyWorld.model.Personaje;
 
-public class PeliculaDto {
+public class PeliculaSerieDtoRes {
 	
 	private String titulo;
 	private String imagen;
 	private Date fechaCreacion;
-	private int calificacion;
+	
+	public PeliculaSerieDtoRes(String titulo, String imagen,Date fechaCreacion) {
+		super();
+		this.titulo = titulo;
+		this.imagen = imagen;
+		this.fechaCreacion = fechaCreacion;
+	}
 	
 	public String getTitulo() {
 		return titulo;
@@ -24,24 +32,14 @@ public class PeliculaDto {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
+
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public int getCalificacion() {
-		return calificacion;
-	}
-	public void setCalificacion(int calificacion) {
-		this.calificacion = calificacion;
-	}
-	@Override
-	public String toString() {
-		return "PeliculaDto [titulo=" + titulo + ", imagen=" + imagen + ", fechaCreacion=" + fechaCreacion
-				+ ", calificacion=" + calificacion + "]";
-	}
-	
-	
+
 	
 }

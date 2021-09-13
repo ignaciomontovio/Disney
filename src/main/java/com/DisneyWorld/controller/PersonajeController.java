@@ -1,5 +1,6 @@
 package com.DisneyWorld.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.DisneyWorld.dto.PersonajeDto;
+import com.DisneyWorld.dto.PersonajeDtoRes;
 import com.DisneyWorld.model.Personaje;
-import com.DisneyWorld.repo.IPeliculaRepo;
+import com.DisneyWorld.model.builder.PersonajeBuilder;
+import com.DisneyWorld.repo.IPeliculaSerieRepo;
 import com.DisneyWorld.repo.IPersonajeRepo;
 import com.DisneyWorld.service.IPersonajeService;
 
 @RestController
-@RequestMapping("/personaje")
+@RequestMapping("/characters")
 public class PersonajeController {
 
 	
 	@Autowired
 	private IPersonajeService personajeService;
+	
+	@Autowired
+	private IPersonajeRepo personajeRepo;
+	
+	@GetMapping(value ="")
+	public ResponseEntity<?> obtenerPersonajesFiltrado(){
+		List<PersonajeDtoRes> personajesDtoRes = personajeService.findAllPersonajeDtoRes();
+		
+		return new ResponseEntity<>(personajesDtoRes,HttpStatus.OK);
+	}
 	
 	@PutMapping( value = "/actualizarPersonaje/{id}")
 	public ResponseEntity<?> actualizarPersonaje(@PathVariable(value = "id")Integer id,@RequestBody PersonajeDto personajeDto) {
@@ -35,17 +48,15 @@ public class PersonajeController {
 	}
 	
 	@GetMapping( value = "/obtenerPersonajes")
-	public List<Personaje> obtenerPersonajes() {
-		List<Personaje> personajes = personajeService.findAll();
-		return personajes;
+	public ResponseEntity<?> obtenerPersonajes() {
+		List<Personaje> personajes = personajeService.findAllPersonaje();
+		return new ResponseEntity<>(personajes,HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/crearPersonaje")
 	public ResponseEntity<?> crearPersonaje(@RequestBody PersonajeDto personajeDto){
-		System.out.println(personajeDto);
 		Personaje personaje = personajeService.savePersonaje(personajeDto);
-		
-		return new ResponseEntity<>(personaje,HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(personajeDto,HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping(value = "/eliminarPersonaje/{id}")
@@ -53,4 +64,8 @@ public class PersonajeController {
 		Personaje personaje = personajeService.deletePersonaje(id);
 		return new ResponseEntity<>(personaje,HttpStatus.OK);
 	}
+	
+	
+	
+	
 }
