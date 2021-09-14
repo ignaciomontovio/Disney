@@ -12,12 +12,13 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
+//@JsonIdentityInfo(
+//		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+//		  property = "id")
 public class PeliculaSerie {
 	
 	@Id
@@ -29,11 +30,11 @@ public class PeliculaSerie {
 	private Date fechaCreacion;
 	private int calificacion;
 	
-	//@JsonBackReference
+	@JsonManagedReference
 	@ManyToMany
 	List<Personaje> personajes;
 	
-	//@JsonBackReference
+	@JsonManagedReference
 	@ManyToMany
 	List<Genero> generos;
 	

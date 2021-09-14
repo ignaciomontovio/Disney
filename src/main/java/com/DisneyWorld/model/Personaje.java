@@ -16,9 +16,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
+//@JsonIdentityInfo(
+//		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+//		  property = "id")
 public class Personaje {
 
 	@Id
@@ -31,7 +31,7 @@ public class Personaje {
 	private float peso;
 	private String historia;
 	
-	//@JsonBackReference
+	@JsonBackReference
 	 //@JsonManagedReference
 	@ManyToMany
 	List<PeliculaSerie> peliculas;

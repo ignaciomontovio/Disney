@@ -30,7 +30,7 @@ public class DisneyWorldApplication implements CommandLineRunner {
 
         System.out.println("Sending Email...");
 
-        sendEmail();
+        //sendEmail();
 		//sendEmailWithAttachment();
 
         System.out.println("Done");
