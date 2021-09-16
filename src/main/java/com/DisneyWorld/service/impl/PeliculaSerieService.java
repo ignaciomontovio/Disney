@@ -31,23 +31,13 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 	
 	public List<PeliculaSerie> findAllPeliculaSerie(){
 		List<PeliculaSerie> peliculasSeries = peliculaSerieRepo.findAll();
-		
-		//List<PeliculaSerie> peliculasSeriesDto = new ArrayList<PeliculaSerieDto>();
-		
-		/*for (PeliculaSerie peliculaSerie : peliculasSeries) {
-			//peliculasSeriesDto.add(new PeliculaSerieBuilder().withSerieDtoRes(peliculaSerie).buildRes());
-			peliculaSerie.getPersonajes()
-		}*/
 		return peliculasSeries;
 	}
 
 	@Override
-	public PeliculaSerie savePelicula(PeliculaSerieDto peliculaDto) {
-		
-		PeliculaSerie pelicula = new PeliculaSerieBuilder().withSerieDto(peliculaDto).build();
-		//pelicula.setGeneros(generoRepo.findById(peliculaDto.getGenero()).get());
-		
-		return peliculaSerieRepo.save(pelicula);
+	public PeliculaSerie savePeliculaSerie(PeliculaSerieDto peliculaDto) {
+		PeliculaSerie peliculaSerie = new PeliculaSerieBuilder().withSerieDto(peliculaDto).build();
+		return peliculaSerieRepo.save(peliculaSerie);
 	}
 
 	@Override
@@ -57,8 +47,7 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 		String titulo = peliculaSerieDto.getTitulo();
 		String imagen = peliculaSerieDto.getImagen();
 		Date fechaCreacion = peliculaSerieDto.getFechaCreacion();
-		int calificacion = peliculaSerieDto.getCalificacion();
-		
+		int calificacion = peliculaSerieDto.getCalificacion();	
 		
 		if(peliculaSerieDto.getPersonajes() != null) {
 			List<Personaje> personajes = new ArrayList<Personaje>();
@@ -68,15 +57,13 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 			peliculaSerie.setPersonajes(personajes);
 		}
 		
-		if(peliculaSerieDto.getPersonajes() != null) {
+		if(peliculaSerieDto.getGeneros() != null) {
 			List<Genero> generos = new ArrayList<Genero>();
 			for (Integer idGenero : peliculaSerieDto.getGeneros()) {
 				generos.add(new Genero(idGenero));
 			}
 			peliculaSerie.setGeneros(generos);
 		}	
-		
-		//List<Genero> generos = peliculaSerieDto.getGeneros();
 		
 		if(titulo != null)
 			peliculaSerie.setTitulo(titulo);
@@ -86,11 +73,7 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 			peliculaSerie.setFechaCreacion(fechaCreacion);
 		if(calificacion != 0)
 			peliculaSerie.setCalificacion(calificacion);
-		/*if(personajes != null)
-			peliculaSerie.setPersonajes(personajes);
-		if(generos != null)
-			peliculaSerie.setGeneros(generos);*/
-		
+
 		peliculaSerie = peliculaSerieRepo.save(peliculaSerie);
 		
 		return peliculaSerie;

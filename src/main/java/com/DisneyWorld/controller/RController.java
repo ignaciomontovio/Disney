@@ -44,22 +44,16 @@ public class RController {
 
 	@Autowired
 	private IUsuarioRepo usuarioService;
-	
-	@Autowired
-	private IGeneroRepo generoService;
 
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
-	@Autowired
-	private IPersonajeService personajeService;
 	
 	@PostMapping( value = REGISTER_URL)
 	public ResponseEntity<?> RegisterUser(@RequestBody Usuario user) {
 		
 		user.setPassword(bcrypt.encode(user.getPassword()));
 		usuarioService.save(user);
-		//return user.toString();
 		return new ResponseEntity<>(user.toString(),HttpStatus.OK);
 	}
 	

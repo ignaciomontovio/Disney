@@ -34,16 +34,6 @@ public class PersonajeService implements IPersonajeService{
 	@Override
 	public Personaje savePersonaje(PersonajeDto personajeDto) {
 		Personaje personaje = new PersonajeBuilder().withPersonajeDto(personajeDto).build();
-		
-		if(personaje.getPeliculas() != null)
-			for (PeliculaSerie pelicula : personaje.getPeliculas()) {
-				PeliculaSerie peliculaExist = peliculaRepo.findByTitulo(pelicula.getTitulo());
-				if(peliculaExist == null) {
-					return null;
-				}
-				pelicula.setId(peliculaExist.getId());
-			}
-
 		personajeRepo.save(personaje);
 		return personaje;
 	}

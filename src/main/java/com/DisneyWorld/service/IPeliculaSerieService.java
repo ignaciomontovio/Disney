@@ -9,7 +9,7 @@ import com.DisneyWorld.model.PeliculaSerie;
 public interface IPeliculaSerieService {
 	public List<PeliculaSerie> findAllPeliculaSerie();
 	
-	public PeliculaSerie savePelicula(PeliculaSerieDto peliculaDto);
+	public PeliculaSerie savePeliculaSerie(PeliculaSerieDto peliculaDto);
 
 	public PeliculaSerie updatePelicula(Integer id,PeliculaSerieDto peliculaDto);
 

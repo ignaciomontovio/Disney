@@ -57,7 +57,7 @@ public class PeliculaSerieController {
 	
 	@PostMapping(value = "/crearPelicula")
 	public ResponseEntity<?> crearPelicula(@RequestBody PeliculaSerieDto peliculaDto) {
-		PeliculaSerie pelicula = peliculaService.savePelicula(peliculaDto);
+		PeliculaSerie pelicula = peliculaService.savePeliculaSerie(peliculaDto);
 		return new ResponseEntity<>(pelicula,HttpStatus.ACCEPTED);
 	}
 	

@@ -34,7 +34,6 @@ public class GeneroController {
 	public ResponseEntity<?> crearGenero(@RequestBody GeneroDto generoDto) {
 		Genero genero = generoService.saveGenero(generoDto);
 		return new ResponseEntity<>(genero,HttpStatus.ACCEPTED);
-		//return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping( value = "/actualizarGenero/{id}")

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 //@JsonIdentityInfo(
 //		  generator = ObjectIdGenerators.PropertyGenerator.class, 
 //		  property = "id")
@@ -54,15 +55,18 @@ public class PeliculaSerie {
 		this.titulo = titulo;
 	}
 
-	public PeliculaSerie(String titulo, String imagen, Date fechaCreacion, int calificacion) {
+	
+	public PeliculaSerie(String titulo, String imagen, Date fechaCreacion, int calificacion, List<Personaje> personajes,
+			List<Genero> generos) {
 		super();
 		this.titulo = titulo;
 		this.imagen = imagen;
 		this.fechaCreacion = fechaCreacion;
 		this.calificacion = calificacion;
-		
-
+		this.personajes = personajes;
+		this.generos = generos;
 	}
+
 	public String getImagen() {
 		return imagen;
 	}

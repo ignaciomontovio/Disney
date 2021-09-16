@@ -27,14 +27,10 @@ public class PersonajeBuilder {
 		
 		
 		if(personajeDto.getPeliculas() != null) {
-			List<Integer> peliculasDto = personajeDto.getPeliculas();
-			for (Integer idPelicula : peliculasDto) {
+			for (Integer idPelicula : personajeDto.getPeliculas()) {
 				this.peliculas.add(new PeliculaSerie(idPelicula));
 			}
-			
 		}
-			
-
 		return this;
 	}
 	
