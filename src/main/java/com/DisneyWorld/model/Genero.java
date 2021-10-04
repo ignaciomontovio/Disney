@@ -17,7 +17,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @CrossOrigin("*")
 //@JsonIdentityInfo(
 //		  generator = ObjectIdGenerators.PropertyGenerator.class, 
@@ -25,18 +26,31 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Genero {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String nombre;
 	
 	private String imagen;
 	
 	@JsonBackReference
-	@ManyToMany
-	private List<PeliculaSerie> peliculas ;
+	@ManyToMany(mappedBy = "generos")
+	private List<PeliculaSerie> peliculas;
 	
 	
+	@Override
+	public String toString() {
+		String showMovies = "";
+		
+		if(peliculas != null)
+			for (PeliculaSerie peliculaSerie : this.peliculas) {
+				System.out.println(peliculaSerie.toString());
+				showMovies=showMovies+peliculaSerie.toString();
+			}
+		return "Genero [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", peliculas=" + showMovies + "]";
+		
+	}
+
 	public Genero() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -49,15 +63,17 @@ public class Genero {
 	}
 	
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Genero(int id) {
+
+
+	public Genero(Long id) {
 		super();
 		this.id = id;
 	}

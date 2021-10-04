@@ -29,20 +29,20 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 	@Autowired
 	private IGeneroRepo generoRepo;
 	
-	public List<PeliculaSerie> findAllPeliculaSerie(){
+	public List<PeliculaSerie> findAllMovieSerie(){
 		List<PeliculaSerie> peliculasSeries = peliculaSerieRepo.findAll();
 		return peliculasSeries;
 	}
 
 	@Override
-	public PeliculaSerie savePeliculaSerie(PeliculaSerieDto peliculaDto) {
+	public PeliculaSerie saveMovieSerie(PeliculaSerieDto peliculaDto) {
 		PeliculaSerie peliculaSerie = new PeliculaSerieBuilder().withSerieDto(peliculaDto).build();
 		return peliculaSerieRepo.save(peliculaSerie);
 	}
 
 	@Override
-	public PeliculaSerie updatePelicula(Integer id,PeliculaSerieDto peliculaSerieDto) {
-		PeliculaSerie peliculaSerie = peliculaSerieRepo.getById(id);
+	public PeliculaSerie updateMovieSerie(Long id,PeliculaSerieDto peliculaSerieDto) {
+		PeliculaSerie peliculaSerie = peliculaSerieRepo.findById(id).get();
 		
 		String titulo = peliculaSerieDto.getTitulo();
 		String imagen = peliculaSerieDto.getImagen();
@@ -51,7 +51,7 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 		
 		if(peliculaSerieDto.getPersonajes() != null) {
 			List<Personaje> personajes = new ArrayList<Personaje>();
-			for (Integer idPelicula : peliculaSerieDto.getPersonajes()) {
+			for (Long idPelicula : peliculaSerieDto.getPersonajes()) {
 				personajes.add(new Personaje(idPelicula));
 			}
 			peliculaSerie.setPersonajes(personajes);
@@ -59,7 +59,7 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 		
 		if(peliculaSerieDto.getGeneros() != null) {
 			List<Genero> generos = new ArrayList<Genero>();
-			for (Integer idGenero : peliculaSerieDto.getGeneros()) {
+			for (Long idGenero : peliculaSerieDto.getGeneros()) {
 				generos.add(new Genero(idGenero));
 			}
 			peliculaSerie.setGeneros(generos);
@@ -80,7 +80,7 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 	}
 
 	@Override
-	public List<PeliculaSerieDtoRes> findAllPeliculaSerieDtoRes() {
+	public List<PeliculaSerieDtoRes> findAllMovieSerieDtoRes() {
 		List<PeliculaSerie> peliculasSeries = peliculaSerieRepo.findAll();
 		List<PeliculaSerieDtoRes> peliculasSeriesDtoRes = new ArrayList<>();
 		if(peliculasSeries != null)
@@ -91,10 +91,16 @@ public class PeliculaSerieService implements IPeliculaSerieService{
 	}
 
 	@Override
-	public PeliculaSerie deletePelicula(Integer id) {
-		PeliculaSerie pelicula = peliculaSerieRepo.getById(id);
+	public PeliculaSerie deleteMovieSerie(Long id) {
+		PeliculaSerie peliculaSerie = peliculaSerieRepo.findById(id).get();
 		peliculaSerieRepo.deleteById(id);
-		return pelicula;
+		return peliculaSerie;
 	}
+
+	@Override
+	public List<PeliculaSerie> findByTitulo(String titulo) {
+		return peliculaSerieRepo.findByTitulo(titulo);
+	}
+
 
 }

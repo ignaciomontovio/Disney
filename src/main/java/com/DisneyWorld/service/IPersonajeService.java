@@ -7,13 +7,13 @@ import com.DisneyWorld.dto.PersonajeDtoRes;
 import com.DisneyWorld.model.Personaje;
 
 public interface IPersonajeService {
-	public List<Personaje> findAllPersonaje();
+	public List<Personaje> findAllCharacters();
 	
-	public Personaje savePersonaje(PersonajeDto personaje);
-	public Personaje updatePersonaje(Integer id, PersonajeDto personajeDto);
+	public Personaje saveCharacter(PersonajeDto personaje);
+	public Personaje updateCharacter(Long id, PersonajeDto personajeDto);
 
-	public Personaje deletePersonaje(Integer id);
+	public Personaje deleteCharacter(Long id);
 
-	public List<PersonajeDtoRes> findAllPersonajeDtoRes();
+	public List<PersonajeDtoRes> findAllCharacterDtoRes();
 	
 }

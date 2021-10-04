@@ -1,7 +1,6 @@
 package com.DisneyWorld;
 
 import static com.DisneyWorld.Constants.LOGIN_URL;
-import static com.DisneyWorld.Constants.REGISTER_URL;
 import static com.DisneyWorld.Constants.INDEX_URL;
 import static com.DisneyWorld.Constants.CSS_URL;
 
@@ -57,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
-				.antMatchers(HttpMethod.POST,REGISTER_URL).permitAll()
+				.antMatchers(HttpMethod.POST,"/auth/register").permitAll()
 				.antMatchers(HttpMethod.GET,INDEX_URL).permitAll()
 				.antMatchers(HttpMethod.GET,CSS_URL).permitAll()
 				.antMatchers(HttpMethod.GET,"/").permitAll()

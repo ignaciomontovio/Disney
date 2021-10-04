@@ -17,7 +17,7 @@ public class GeneroBuilder {
 		this.nombre = generoDto.getNombre();
 		this.imagen = generoDto.getImagen();
 		if(generoDto.getPeliculas() != null)
-			for (Integer idPelicula : generoDto.getPeliculas()) {
+			for (Long idPelicula : generoDto.getPeliculas()) {
 				pelicula.add(new PeliculaSerie(idPelicula));
 			}
 

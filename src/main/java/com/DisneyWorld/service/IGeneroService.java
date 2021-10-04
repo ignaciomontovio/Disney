@@ -7,12 +7,12 @@ import com.DisneyWorld.model.Genero;
 
 public interface IGeneroService {
 
-	List<Genero> findAllGenero();
+	List<Genero> findAllGenre();
 
-	Genero saveGenero(GeneroDto generoDto);
+	Genero saveGenre(GeneroDto generoDto);
 
-	Genero updateGenero(Integer id, GeneroDto generoDto);
+	Genero updateGenre(Long id, GeneroDto generoDto);
 
-	Genero deleteGenero(Integer id);
+	Genero deleteGenre(Long id);
 
 }

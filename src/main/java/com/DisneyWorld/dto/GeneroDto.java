@@ -5,13 +5,13 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class GeneroDto {
 
 	private String nombre;
 	private String imagen;
 	
-	List<Integer> peliculas = new ArrayList<Integer>();
+	List<Long> peliculas = new ArrayList<Long>();
 
 
 	public GeneroDto() {
@@ -19,7 +19,7 @@ public class GeneroDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GeneroDto(String nombre, String imagen, List<Integer> peliculas) {
+	public GeneroDto(String nombre, String imagen, List<Long> peliculas) {
 		super();
 		this.nombre = nombre;
 		this.imagen = imagen;
@@ -49,13 +49,14 @@ public class GeneroDto {
 		this.imagen = imagen;
 	}
 
-	public List<Integer> getPeliculas() {
+	public List<Long> getPeliculas() {
 		return peliculas;
 	}
 
-	public void setPeliculas(List<Integer> peliculas) {
+	public void setPeliculas(List<Long> peliculas) {
 		this.peliculas = peliculas;
 	}
+
 	
 	
 }

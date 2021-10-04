@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,15 +17,16 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@CrossOrigin("*")
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 //@JsonIdentityInfo(
 //		  generator = ObjectIdGenerators.PropertyGenerator.class, 
 //		  property = "id")
 public class Personaje {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String nombre;
 	private String imagen;
@@ -32,8 +35,7 @@ public class Personaje {
 	private String historia;
 	
 	@JsonBackReference
-	 //@JsonManagedReference
-	@ManyToMany
+	@ManyToMany(mappedBy = "personajes")
 	List<PeliculaSerie> peliculas;
 	
 
@@ -42,10 +44,7 @@ public class Personaje {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Personaje(int id) {
-		super();
-		this.id = id;
-	}
+
 
 	public Personaje(String nombre) {
 		super();
@@ -73,13 +72,26 @@ public class Personaje {
 		this.peliculas = peliculas;
 	}
 
-	public int getId() {
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
+
+
+	public Personaje(Long id) {
+		super();
+		this.id = id;
+	}
+
+
+
 	public String getImagen() {
 		return imagen;
 	}

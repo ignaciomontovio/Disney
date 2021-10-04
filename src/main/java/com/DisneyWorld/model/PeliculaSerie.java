@@ -7,24 +7,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@CrossOrigin("*")
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 //@JsonIdentityInfo(
 //		  generator = ObjectIdGenerators.PropertyGenerator.class, 
 //		  property = "id")
 public class PeliculaSerie {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String titulo;
 	private String imagen;
@@ -32,10 +35,18 @@ public class PeliculaSerie {
 	private int calificacion;
 	
 	@JsonManagedReference
+	@JoinTable(
+			  name = "peliculaserie_personaje", 
+			  joinColumns = @JoinColumn(name = "peliculaserie_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "personaje_id"))
 	@ManyToMany
 	List<Personaje> personajes;
 	
 	@JsonManagedReference
+	@JoinTable(
+			  name = "peliculaserie_genero", 
+			  joinColumns = @JoinColumn(name = "peliculaserie_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "genero_id"))
 	@ManyToMany
 	List<Genero> generos;
 	
@@ -44,11 +55,7 @@ public class PeliculaSerie {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public PeliculaSerie(int id) {
-		super();
-		this.id = id;
-	}
+
 
 	public PeliculaSerie(String titulo) {
 		super();
@@ -70,12 +77,7 @@ public class PeliculaSerie {
 	public String getImagen() {
 		return imagen;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
@@ -109,6 +111,29 @@ public class PeliculaSerie {
 	public void setGeneros(List<Genero> generos) {
 		this.generos = generos;
 	}
+
+	@Override
+	public String toString() {
+		return "PeliculaSerie [id=" + id + ", titulo=" + titulo + ", imagen=" + imagen + ", fechaCreacion="
+				+ fechaCreacion + ", calificacion=" + calificacion + "]";
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public PeliculaSerie(Long id) {
+		super();
+		this.id = id;
+	}
+
 	
 	
 }

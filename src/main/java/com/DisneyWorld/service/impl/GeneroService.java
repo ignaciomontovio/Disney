@@ -20,21 +20,21 @@ public class GeneroService implements IGeneroService{
 	private IGeneroRepo generoRepo;
 
 	@Override
-	public List<Genero> findAllGenero() {
+	public List<Genero> findAllGenre() {
 		List<Genero> generos = generoRepo.findAll();
 		return generos;
 	}
 
 	@Override
-	public Genero saveGenero(GeneroDto generoDto) {
+	public Genero saveGenre(GeneroDto generoDto) {
 		Genero genero = new GeneroBuilder().withGeneroDto(generoDto).build();
 		genero = generoRepo.save(genero);
 		return genero;
 	}
 
 	@Override
-	public Genero updateGenero(Integer id, GeneroDto generoDto) {
-		Genero genero = generoRepo.getById(id);
+	public Genero updateGenre(Long id, GeneroDto generoDto) {
+		Genero genero = generoRepo.findById(id).get();
 		
 		String imagen = generoDto.getImagen();
 		String nombre = generoDto.getNombre();
@@ -46,8 +46,9 @@ public class GeneroService implements IGeneroService{
 		
 		if(generoDto.getPeliculas() != null) {
 			List<PeliculaSerie> peliculasSeries = new ArrayList<PeliculaSerie>();
-			for (Integer idPeliculaSerie : generoDto.getPeliculas()) {
+			for (Long idPeliculaSerie : generoDto.getPeliculas()) {
 				peliculasSeries.add(new PeliculaSerie(idPeliculaSerie));
+				System.out.println(idPeliculaSerie);
 			}
 			genero.setPeliculas(peliculasSeries);
 		}
@@ -56,8 +57,8 @@ public class GeneroService implements IGeneroService{
 	}
 
 	@Override
-	public Genero deleteGenero(Integer id) {
-		Genero genero = generoRepo.getById(id);
+	public Genero deleteGenre(Long id) {
+		Genero genero = generoRepo.findById(id).get();
 		generoRepo.deleteById(id);
 		return genero;
 	}

@@ -11,8 +11,8 @@ public class PersonajeDto {
 	private int edad;
 	private float peso;
 	private String historia;
-	private List<Integer> peliculas;
-	private List<Integer> generos;
+	private List<Long> peliculas;
+	private List<Long> generos;
 	
 	//private List<PeliculaSerieDto> peliculas;
 	//private List<GeneroDto> generos;
@@ -20,8 +20,8 @@ public class PersonajeDto {
 	public String getNombre() {
 		return nombre;
 	}
-	public PersonajeDto(String nombre, String imagen, int edad, float peso, String historia, List<Integer> peliculas,
-			List<Integer> generos) {
+	public PersonajeDto(String nombre, String imagen, int edad, float peso, String historia, List<Long> peliculas,
+			List<Long> generos) {
 		super();
 		this.nombre = nombre;
 		this.imagen = imagen;
@@ -58,19 +58,18 @@ public class PersonajeDto {
 	public void setHistoria(String historia) {
 		this.historia = historia;
 	}
-	public List<Integer> getPeliculas() {
+	public List<Long> getPeliculas() {
 		return peliculas;
 	}
-	public void setPeliculas(List<Integer> peliculas) {
+	public void setPeliculas(List<Long> peliculas) {
 		this.peliculas = peliculas;
 	}
-	public List<Integer> getGeneros() {
+	public List<Long> getGeneros() {
 		return generos;
 	}
-	public void setGeneros(List<Integer> generos) {
+	public void setGeneros(List<Long> generos) {
 		this.generos = generos;
 	}
-
 	
 	
 }

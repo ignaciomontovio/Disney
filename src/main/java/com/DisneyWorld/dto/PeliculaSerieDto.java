@@ -13,13 +13,13 @@ public class PeliculaSerieDto {
 	private String imagen;
 	private Date fechaCreacion;
 	private int calificacion;
-	private List<Integer> personajes;
-	private List<Integer> generos;
+	private List<Long> personajes;
+	private List<Long> generos;
 	//private List<Personaje> personajes;
 	//private List<Genero> generos;
 	
 	public PeliculaSerieDto(String titulo, String imagen, Date fechaCreacion, int calificacion,
-			List<Integer> personajes, List<Integer> generos) {
+			List<Long> personajes, List<Long> generos) {
 		super();
 		this.titulo = titulo;
 		this.imagen = imagen;
@@ -73,23 +73,22 @@ public class PeliculaSerieDto {
 				+ ", calificacion=" + calificacion + "]";
 	}
 
-	public List<Integer> getPersonajes() {
+	public List<Long> getPersonajes() {
 		return personajes;
 	}
 
-	public void setPersonajes(List<Integer> personajes) {
+	public void setPersonajes(List<Long> personajes) {
 		this.personajes = personajes;
 	}
 
-	public List<Integer> getGeneros() {
+	public List<Long> getGeneros() {
 		return generos;
 	}
 
-	public void setGeneros(List<Integer> generos) {
+	public void setGeneros(List<Long> generos) {
 		this.generos = generos;
 	}
 
-	
 	
 	
 }

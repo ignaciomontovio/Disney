@@ -25,23 +25,23 @@ public class PersonajeService implements IPersonajeService{
 	private IPeliculaSerieRepo peliculaRepo;
 
 	@Override
-	public List<Personaje> findAllPersonaje() {
+	public List<Personaje> findAllCharacters() {
 		
 		List<Personaje> personajes = personajeRepo.findAll();
 		return personajes;
 	}
 
 	@Override
-	public Personaje savePersonaje(PersonajeDto personajeDto) {
+	public Personaje saveCharacter(PersonajeDto personajeDto) {
 		Personaje personaje = new PersonajeBuilder().withPersonajeDto(personajeDto).build();
 		personajeRepo.save(personaje);
 		return personaje;
 	}
 
 	@Override
-	public Personaje updatePersonaje(Integer id, PersonajeDto personajeDto) {
+	public Personaje updateCharacter(Long id, PersonajeDto personajeDto) {
 		
-		Personaje personaje = personajeRepo.getById(id);
+		Personaje personaje = personajeRepo.findById(id).get();
 		
 		int edad = personajeDto.getEdad();
 		float peso = personajeDto.getPeso();
@@ -64,14 +64,14 @@ public class PersonajeService implements IPersonajeService{
 	}
 
 	@Override
-	public Personaje deletePersonaje(Integer id) {
-		Personaje personaje = personajeRepo.getById(id);
+	public Personaje deleteCharacter(Long id) {
+		Personaje personaje = personajeRepo.findById(id).get();
 		personajeRepo.deleteById(id);
 		return personaje;
 	}
 
 	@Override
-	public List<PersonajeDtoRes> findAllPersonajeDtoRes() {
+	public List<PersonajeDtoRes> findAllCharacterDtoRes() {
 		List<Personaje> personajes = personajeRepo.findAll();
 		List<PersonajeDtoRes> personajesDtoRes = new ArrayList<PersonajeDtoRes>();
 		if(personajes != null)

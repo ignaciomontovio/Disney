@@ -7,15 +7,17 @@ import com.DisneyWorld.dto.PeliculaSerieDtoRes;
 import com.DisneyWorld.model.PeliculaSerie;
 
 public interface IPeliculaSerieService {
-	public List<PeliculaSerie> findAllPeliculaSerie();
+	public List<PeliculaSerie> findAllMovieSerie();
 	
-	public PeliculaSerie savePeliculaSerie(PeliculaSerieDto peliculaDto);
+	public PeliculaSerie saveMovieSerie(PeliculaSerieDto peliculaDto);
 
-	public PeliculaSerie updatePelicula(Integer id,PeliculaSerieDto peliculaDto);
+	public PeliculaSerie updateMovieSerie(Long id,PeliculaSerieDto peliculaDto);
 
-	public List<PeliculaSerieDtoRes> findAllPeliculaSerieDtoRes();
+	public List<PeliculaSerieDtoRes> findAllMovieSerieDtoRes();
 
-	public PeliculaSerie deletePelicula(Integer id);
+	public PeliculaSerie deleteMovieSerie(Long id);
+
+	public List<PeliculaSerie> findByTitulo(String nombre);
 
 
 

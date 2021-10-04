@@ -31,13 +31,13 @@ public class PeliculaSerieBuilder {
 		this.calificacion = peliculaDto.getCalificacion();
 		
 		if(peliculaDto.getPersonajes() != null) {
-			for (Integer idPersonaje : peliculaDto.getPersonajes()) {
+			for (Long idPersonaje : peliculaDto.getPersonajes()) {
 				personajes.add(new Personaje(idPersonaje));
 			}
 		}
 		
 		if(peliculaDto.getGeneros() != null) {
-			for (Integer idGenero : peliculaDto.getGeneros()) {
+			for (Long idGenero : peliculaDto.getGeneros()) {
 				generos.add(new Genero(idGenero));
 			}
 		}

@@ -20,7 +20,7 @@ class DisneyWorldApplicationTests {
 	@Test
 	public void crearUsuarioTest() {
 		Usuario us = new Usuario();
-		us.setId(1);
+		us.setId((long) 1);
 		us.setUsername("ignacio");
 		us.setPassword(encoder.encode("1234"));
 		Usuario retorno = repo.save(us);
